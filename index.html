@@ -30,11 +30,11 @@
                 let isTop = false;
                 div.addEventListener('click', function() {
                     if (!isTop) {
-                        // Перемещаем на первую позицию body
+                        // Move to the first position of the body.
                         document.body.insertBefore(div, document.body.firstChild);
                         isTop = true;
                     } else {
-                        // Возвращаем на исходную позицию
+                        // Return to the original position.
                         let currentIndex = originalOrder.indexOf(div);
                         let nextIndex = currentIndex + 1;
                         let nextDiv = originalOrder[nextIndex];
@@ -44,6 +44,13 @@
                             document.body.appendChild(div);
                         }
                         isTop = false;
+                    }
+                    
+                    //  Delete empty divs
+                    let lastChild = document.body.lastChild;
+                    while (lastChild && lastChild.tagName === 'DIV' && !lastChild.textContent) {
+                        document.body.removeChild(lastChild);
+                        lastChild = document.body.lastChild;
                     }
                 });
             });
