@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        div {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        window.onload = function() {
+            let divs = [];
+            let originalOrder = [];
+
+            for (let i = 1; i <= 100; i++) {
+                let div = document.createElement('div');
+                div.textContent = 'div' + i;
+                document.body.appendChild(div);
+                divs.push(div);
+                originalOrder.push(div);
+            }
+
+            divs.forEach((div, index) => {
+                let isTop = false;
+                div.addEventListener('click', function() {
+                    if (!isTop) {
+                        // Перемещаем на первую позицию body
+                        document.body.insertBefore(div, document.body.firstChild);
+                        isTop = true;
+                    } else {
+                        // Возвращаем на исходную позицию
+                        let currentIndex = originalOrder.indexOf(div);
+                        let nextIndex = currentIndex + 1;
+                        let nextDiv = originalOrder[nextIndex];
+                        if (nextDiv) {
+                            document.body.insertBefore(div, nextDiv);
+                        } else {
+                            document.body.appendChild(div);
+                        }
+                        isTop = false;
+                    }
+                });
+            });
+        };
+    </script>
+</body>
+</html>
