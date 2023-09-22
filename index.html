@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <style>
         div {
@@ -12,9 +13,10 @@
         }
     </style>
 </head>
+
 <body>
     <script>
-        window.onload = function() {
+        window.onload = function () {
             let divs = [];
             let originalOrder = [];
 
@@ -28,7 +30,7 @@
 
             divs.forEach((div, index) => {
                 let isTop = false;
-                div.addEventListener('click', function() {
+                div.addEventListener('click', function () {
                     if (!isTop) {
                         // Move to the first position of the body.
                         document.body.insertBefore(div, document.body.firstChild);
@@ -45,7 +47,7 @@
                         }
                         isTop = false;
                     }
-                    
+
                     //  Delete empty divs
                     let lastChild = document.body.lastChild;
                     while (lastChild && lastChild.tagName === 'DIV' && !lastChild.textContent) {
@@ -57,4 +59,5 @@
         };
     </script>
 </body>
+
 </html>
